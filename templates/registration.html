@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<section class="hero is-primary is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                    <form action="" class="box">
+                        <div class="field">
+                            <label for="reg-name" class="label">Name</label>
+                            <div class="control has-icons-left">
+                                <input type="text" id="reg-name" placeholder="e.g. John" class="input" required>
+                                <span class="icon is-small is-left">
+                  <i class="fa fa-user-circle-o"></i>
+                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="reg-email" class="label">Email</label>
+                            <div class="control has-icons-left">
+                                <input type="email" id="reg-email" placeholder="e.g. some@mail.com" class="input" required>
+                                <span class="icon is-small is-left">
+                  <i class="fa fa-envelope"></i>
+                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="reg-pass" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                <input type="password" id="reg-pass" placeholder="*******" class="input" required>
+                                <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="button is-success" id="signup">
+                                Registration
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    const name = document.getElementById('reg-name')
+    const email = document.getElementById('reg-email')
+    const password = document.getElementById('reg-pass')
+    document.getElementById('signup').addEventListener('click', (e) => {
+        e.preventDefault()
+        const n = name.value;
+        const em = email.value;
+        const p = password.value;
+        fetch("/reg",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({n, em, p})
+            })
+            .then(function(res){ console.log(res) })
+            .catch(function(err){ console.log(err) })
+    })
+
+</script>
+</body>
+</html>
